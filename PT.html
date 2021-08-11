@@ -1,0 +1,671 @@
+
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Partish-Tark</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" charset="utf-8"></script>
+
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: "Roboto", sans-serif;
+        }
+
+        .background {
+            background-size: 100% 100%;
+            background-repeat: no-repeat;
+            background-image: url("s.p\ and\ tark.jpg");
+        }
+
+        header {
+            z-index: 1;
+            position: fixed;
+            background: #22242A;
+            padding: 20px;
+            width: calc(100% - 0%);
+            top: 0;
+            height: 30px;
+        }
+
+        .left_area h3 {
+            color: #fff;
+            margin: 0;
+            text-transform: uppercase;
+            font-size: 22px;
+            font-weight: 900;
+        }
+
+        .left_area span {
+            color: #19B3D3;
+        }
+
+        .left_area span:hover {
+            color: hotpink;
+        }
+
+        .logout_btn {
+            padding: 5px;
+            background: hotpink;
+            text-decoration: none;
+            float: right;
+            margin-top: -30px;
+            margin-right: 40px;
+            border-radius: 2px;
+            font-size: 15px;
+            font-weight: 600;
+            color: #fff;
+            transition: 0.5s;
+            transition-property: background;
+        }
+
+
+
+        .sidebar {
+            z-index: 1;
+            top: 0;
+            background: #2f323a;
+            margin-top: 70px;
+            padding-top: 30px;
+            position: fixed;
+            left: 0;
+            width: 250px;
+            height: calc(100% - 9%);
+            transition: 0.5s;
+            transition-property: left;
+            overflow-y: auto;
+        }
+
+        .profile_info {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .sidebar .profile_info .profile_image {
+            width: 100px;
+            height: 100px;
+            border-radius: 100px;
+            margin-bottom: 10px;
+        }
+
+        .sidebar .profile_info h4 {
+            color: #ccc;
+            margin-top: 0;
+            margin-bottom: 20px;
+        }
+
+        .sidebar a {
+            color: #fff;
+            display: block;
+            width: 100%;
+            line-height: 60px;
+            text-decoration: none;
+            padding-left: 40px;
+            box-sizing: border-box;
+            transition: 0.5s;
+            transition-property: background;
+        }
+
+        .sidebar a:hover {
+            background: hotpink;
+        }
+
+        .sidebar i {
+            padding-right: 10px;
+        }
+
+        label #sidebar_btn {
+            z-index: 1;
+            color: #fff;
+            position: fixed;
+            cursor: pointer;
+            left: 300px;
+            font-size: 20px;
+            margin: 5px 0;
+            transition: 0.5s;
+            transition-property: color;
+        }
+
+        label #sidebar_btn:hover {
+            color: hotpink;
+        }
+
+        h3:hover {
+            color: hotpink;
+        }
+
+        #check:checked~.sidebar {
+            left: -185px;
+        }
+
+        #check:checked~.sidebar a span {
+            display: none;
+        }
+
+        #check:checked~.sidebar a {
+            font-size: 20px;
+            margin-left: 165px;
+            width: 100%;
+        }
+
+        .content {
+            width: (100% - 250px);
+            margin-top: 60px;
+            padding: 20px;
+            margin-left: 250px;
+            background: url(background.png) no-repeat;
+            background-position: center;
+            background-size: cover;
+            height: 100vh;
+            transition: 0.5s;
+        }
+
+        #check:checked~.content {
+            margin-left: 60px;
+        }
+
+        #check:checked~.sidebar .profile_info {
+            display: none;
+        }
+
+        #check {
+            display: none;
+        }
+
+        .mobile_nav {
+            display: none;
+        }
+
+        .content .card p {
+            background: #fff;
+            padding: 15px;
+            margin-bottom: 10px;
+            font-size: 14px;
+            opacity: 0.8;
+        }
+
+        /* Responsive CSS */
+
+        @media screen and (max-width: 780px) {
+            .sidebar {
+                display: none;
+            }
+
+            #sidebar_btn {
+                display: none;
+            }
+
+            .content {
+                margin-left: 0;
+                margin-top: 0;
+                padding: 10px 20px;
+                transition: 0s;
+            }
+
+            #check:checked~.content {
+                margin-left: 0;
+            }
+
+            .mobile_nav {
+                display: block;
+                width: calc(100% - 0%);
+            }
+
+            .nav_bar {
+                background: #222;
+                width: (100% - 0px);
+                margin-top: 70px;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                padding: 10px 20px;
+            }
+
+            .nav_bar .mobile_profile_image {
+                width: 50px;
+                height: 50px;
+                border-radius: 50%;
+            }
+
+            .nav_bar .nav_btn {
+                color: #fff;
+                font-size: 22px;
+                cursor: pointer;
+                transition: 0.5s;
+                transition-property: color;
+            }
+
+            .nav_bar .nav_btn:hover {
+                color: hotpink;
+            }
+
+            .mobile_nav_items {
+                background: #2F323A;
+                display: none;
+            }
+
+            .mobile_nav_items a {
+                color: #fff;
+                display: block;
+                text-align: center;
+                letter-spacing: 1px;
+                line-height: 60px;
+                text-decoration: none;
+                box-sizing: border-box;
+                transition: 0.5s;
+                transition-property: background;
+            }
+
+            .mobile_nav_items a:hover {
+                background: #19B3D3;
+            }
+
+            .mobile_nav_items i {
+                padding-right: 10px;
+            }
+
+            .active {
+                display: block;
+            }
+        }
+
+        .dropbtn {
+            background-color: #2F323A;
+            color: white;
+            padding: 16px;
+            font-size: 16px;
+            border: none;
+        }
+
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: hotpink;
+            min-width: 160px;
+            box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+            z-index: 1;
+        }
+
+        .dropdown-content a {
+            color: black;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+        }
+
+        .dropdown-content a:hover {
+            background-color: #ddd;
+        }
+
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+
+        .leftside {
+            color: #000000;
+            text-transform: uppercase;
+            text-align: center;
+        }
+
+        .leftside h3 {
+            font-size: 40px;
+            margin-bottom: 20px;
+            position: relative;
+        }
+
+        .leftside h1 {
+            margin-top: 20px;
+            font-size: 25px;
+            margin-left: 50px;
+            margin-bottom: 25px;
+        }
+
+        .leftside h2 {
+            margin-bottom: 35px;
+            font-weight: 500;
+            word-spacing: 4px;
+            font-size: 50px;
+            content: "";
+            color: #000000;
+        }
+
+        .color span {
+            color: #19B3D3;
+
+        }
+
+        .hotpink {
+            color: hotpink;
+        }
+
+        .blue {
+            color: #19B3D3;
+        }
+
+        .link {
+            display: inline-block;
+            background: linear-gradient(45deg, #12B3D3, hotpink);
+            border-radius: 6px;
+            padding: 20px 10px;
+            box-sizing: border-box;
+            box-shadow: 40px 22px 70px rgba(#12B3D3, hotpink, pink, lightblue);
+            text-decoration: none;
+        }
+
+        .hiden {
+            color: white;
+        }
+
+        .card {
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+            max-width: 300px;
+            margin: auto;
+            text-align: center;
+            font-family: arial;
+        }
+
+        .youtube {
+            text-decoration: underline blue;
+        }
+
+        .info {
+            margin-top: -500px;
+            text-align: right;
+            font-family: "Roboto", sans-serif;
+            font-weight: 400;
+            font-size: medium;
+        }
+
+        .card h1 {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            text-align: center;
+        }
+
+        .card h1:hover {
+            color: hotpink;
+        }
+
+        .coruse {
+            border: none;
+            outline: 0;
+            padding: 12px;
+            color: white;
+            background-color: #19B3D3;
+            text-align: center;
+            cursor: pointer;
+            width: 100%;
+            font-size: 18px;
+        }
+
+        .coruse :hover {
+            opacity: 0.7;
+        }
+
+        footer {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            text-align: center;
+            color: #19B3D3;
+        }
+
+        footer :hover {
+            color: hotpink;
+        }
+
+        .body {
+            margin: 0;
+            width: 100vw;
+            height: 100vh;
+            background: #ecf0f3;
+            display: flex;
+            align-items: center;
+            text-align: center;
+            justify-content: center;
+            place-items: center;
+            overflow: hidden;
+            font-family: poppins;
+        }
+
+        .container {
+            position: relative;
+            width: 350px;
+            height: 500px;
+            border-radius: 20px;
+            padding: 40px;
+            box-sizing: border-box;
+            background: #ecf0f3;
+            box-shadow: 14px 14px 20px #19B3D3, -14px -14px 20px hotpink;
+        }
+
+        .brand-logo {
+            height: 100px;
+            width: 100px;
+            background: url("https://img.icons8.com/bubbles/100/000000/email--v1.png");
+            background-repeat: no-repeat;
+            margin: auto;
+            border-radius: 50%;
+            box-sizing: border-box;
+            box-shadow: 14px 14px 20px #19B3D3, -14px -14px 20px hotpink;
+        }
+
+
+        .inputs {
+            text-align: left;
+            margin-top: 30px;
+        }
+
+        .body label,
+        input,
+        button {
+            display: block;
+            width: 100%;
+            outline: none;
+        }
+
+
+
+        .body input {
+            background: #ecf0f3;
+            padding: 10px;
+            border-radius: 50px;
+            box-shadow: inset 6px 6px 6px #cbced1, inset -6px -6px 6px white;
+        }
+
+        .body button {
+            margin-top: 20px;
+            background: #1DA1F2;
+            height: 40px;
+            border-radius: 20px;
+
+        }
+
+        .body button:hover {
+            box-shadow: none;
+        }
+
+
+        .body h1 {
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+
+        .tark a {
+            text-align: center;
+            text-decoration: none;
+            margin-top: 255px;
+        }
+
+        .counter {
+            color: #19B3D3;
+            text-align: right;
+            font-family: cursive;
+        }
+    </style>
+</head>
+
+<body>
+
+    <input type="checkbox" id="check">
+    <!--header area start-->
+    <header>
+        <label for="check">
+            <i class="fas fa-bars" id="sidebar_btn"></i>
+        </label>
+        <div class="left_area">
+            <h3 id="tark"> Tark and <span>Partish</span></h3>
+        </div>
+
+    </header>
+    <!--hi-->
+
+    <div class="sidebar">
+        <div class="profile_info">
+            <img src="spider-man.png" class="profile_image" alt="">
+            <h4>Tark</h4>
+        </div>
+
+
+        <div class="dropdown">
+            <button class="dropbtn">Follow us <i class="fas fa-home"></i></button>
+            <div class="dropdown-content">
+                <a href="#">Insagram</a>
+                <a href="#">Facebook</a>
+                <a href="#">Redit</a>
+            </div>
+        </div>
+        <div class="dropdown">
+            <button class="dropbtn">Settings <i class="fas fa-cogs"></i></button>
+            <div class="dropdown-content">
+                <a href="#">Website setings</a>
+                <a href="#">Brain Settings</a>
+            </div>
+        </div>
+        <a href="#"><i class="fab fa-blogger"></i><span>Vlogs </span></a>
+        <a href="#"><i class="fab fa-youtube"></i><span>Partish's Youtube channel</span></a>
+        <a href="#"><i class="fab fa-youtube"></i><span>Tark's Youtube channel</span></a>
+    </div>
+    <main>
+        <!---main containt-->
+        <div class="background">
+            <div class="upper-side">
+                <div class="leftside"><br><br><br><br>
+                    <h1 class="counter"> Like Counter <i class="fas "></i>&nbsp; <spam class="clickCount "></spam>
+                    </h1><br><br><br>
+                    <h1 class="color"
+                        style=" color: #19B3D3; font-weight: bold;font-style: italic; font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif; font-size: 60px;">
+                        Welcome to </h1>
+                    <h1><span class="hotpink"
+                            style=" color: #EA2C6A; font-weight: bold;font-style: italic; font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif; font-size: 60px;">
+                            Tark & Partish's</span> <span class="blue" style=" color: font-weight bold;font-style: italic; font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif; font-size: 60px;"> Website</span></h1>
+                    <div class="main-div">
+                        <div class="inner-div">
+                            <a href="#" class="link">Like Us <span class="hiden" hidden>jsssssssssss</span><i
+                                    class="fas fa-thumbs-up"></i></a>
+                            <script src="script.js"></script>
+                        </div><br><br><br><br><br><br><br><br><br>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--Tark's publi-->
+        <h2 style="text-align:center;">PT Technical</h2>
+        <div class="card">
+            <img src="img_avatar3.png" style="width:100%">
+            <h1>Partish</h1>
+            <p>Partish's Youtube <br><a href="https://www.youtube.com/channel/UCTz9N_7dQNgrDHyU89DSIbA"  target="_blank" class="youtube">Click Here To Open</a></p>
+            <p style="color: white;"> em Ipsum passages, and more recently with desktop publishing software like
+                Aldus PageMaker including versions of Lorem Ipsum.</p>
+        </div>
+        <br><br><br>
+
+        <!--info of Tark-->
+        <div class="card">
+            <h1 class="hover">About Partish:-</h1>
+            <p>Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of
+                classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin
+                professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words,
+                consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical
+                literature, discovered the undoubtable source. Lorem Ipsum comes from sections 1.10.32 and 1.10.33
+                of "de Finibus Bonorum et Malorum" (The Extremes of Good and Evil) by Cicero, written in 45 BC. This
+                book is a treatise on the theory of ethics, very popular during the Renaissance. The first line of
+                Lorem Ipsum, "Lorem ipsum dolor sit amet..", comes from a line in section 1.10.32.</p><br>
+            <a href="upload.html" class="coruse">View his courses and source code</a><br><br><br>
+            <a href="hi.pdf" class="coruse">View his courses and source code</a>
+        </div><br><br>
+        <!--publi.... of partish-->
+        <br><br><br><br><br><br>
+        <div class="card">
+            <img src="img_avatar3.png" style="width:100%">
+            <h1>Tark</h1>
+            <p>Tark's Youtube <br><a href="#" class="youtube">Click Here To Open</a></p>
+            <p style="color: white;"> em Ipsum passages, and more recently with desktop publishing software like
+                Aldus PageMaker including versions of Lorem Ipsum.</p>
+        </div>
+        <br><br><br>
+        <!--info of Partish-->
+        <div class="card" data-aos="flip-left">
+            <h1 class="hover">About Tark:-</h1>
+            <p>Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of
+                classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin
+                professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words,
+                consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical
+                literature, discovered the undoubtable source. Lorem Ipsum comes from sections 1.10.32 and 1.10.33
+                of "de Finibus Bonorum et Malorum" (The Extremes of Good and Evil) by Cicero, written in 45 BC. This
+                book is a treatise on the theory of ethics, very popular during the Renaissance. The first line of
+                Lorem Ipsum, "Lorem ipsum dolor sit amet..", comes from a line in section 1.10.32.</p>
+            <button class="coruse">View his coruses and source code</button>
+        </div><br><br>
+    </main>
+    <footer>
+        <div class="form">
+            <h1>Register To Contact Us<i class="far fa-paper-plane"></i> </h1>
+            <form>
+                <div class="body">
+                    <div class="container">
+                        <div class="brand-logo"></div>
+                        <div class="inputs">
+                            <label>EMAIL</label>
+                            <input type="email" placeholder="example@xyz.com" /> <br>
+                            <label>NAME</label>
+                            <input type="text" placeholder="Enter Your Name" />
+                            <button type="submit">Register</button>
+                            </h1>
+                        </div>
+                    </div>
+            </form>
+    </footer>
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script>
+        AOS.init({
+            duration: 1000,
+        });
+    </script>
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('.nav_btn').click(function () {
+                $('.mobile_nav_items').toggleClass('active');
+            });
+        });</script>
+</body>
+
+</html>
